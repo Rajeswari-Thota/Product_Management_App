@@ -21,7 +21,6 @@ namespace Product_Management_App
         }
         public static void Viewproduct(SqlConnection con)
         {
-
             var id = AnsiConsole.Ask<int>("Enter an Id to view product: ");
             SqlCommand cmd = new SqlCommand($"select*from Product_Management where Product_Id={id}", con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -36,7 +35,6 @@ namespace Product_Management_App
                 for (int i = 0; i < dr.FieldCount; i++)
                 {
                     arr[i] = dr.GetValue(i).ToString();
-
                 }
                 table.AddRow(arr);
             }
@@ -45,7 +43,6 @@ namespace Product_Management_App
         }
         public static void Viewallproducts(SqlConnection con)
         {
-
             SqlCommand cmd = new SqlCommand($"select*from Product_Management", con);
             SqlDataReader dr = cmd.ExecuteReader();
             var table = new Table();
@@ -59,10 +56,8 @@ namespace Product_Management_App
                 for (int i = 0; i < dr.FieldCount; i++)
                 {
                     arr[i] = dr.GetValue(i).ToString();
-
                 }
                 table.AddRow(arr);
-
             }
             AnsiConsole.Write(table);
             dr.Close();
@@ -87,8 +82,7 @@ namespace Product_Management_App
             else
             {
                 Console.WriteLine("Product not found");
-            }
-            
+            }   
         }
         public static void DeleteProduct(SqlConnection con)
         {
@@ -124,31 +118,26 @@ namespace Product_Management_App
                         {
                             Product.Addproduct(con);
                             break;
-
                         }
                     case "View Product":
                         {
                             Product.Viewproduct(con);
                             break;
-
                         }
                     case "View All Products":
                         {
                             Product.Viewallproducts(con);
                             break;
-
                         }
                     case "Update Product":
                         {
                             Product.Updateproduct(con);
                             break;
-
                         }
                     case "Delete Product":
                         {
                             Product.DeleteProduct(con);
                             break;
-
                         }
                 }
                 a = AnsiConsole.Ask<string>("Do wish to continue(y/n): ");
